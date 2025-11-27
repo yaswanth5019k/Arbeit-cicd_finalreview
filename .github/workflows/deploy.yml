@@ -31,6 +31,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Create dummy env files
+        run: |
+          echo "Creating dummy env files for docker build..."
+          echo "DB_HOST=localhost" > backend/docker.env
+          echo "DB_PORT=5432" >> backend/docker.env
+          echo "DB_NAME=arbeit" >> backend/docker.env
+          echo "DB_USERNAME=postgres" >> backend/docker.env
+          echo "DB_PASSWORD=password" >> backend/docker.env
+          echo "JWT_SECRET=dummy-secret-key" >> backend/docker.env
+          echo "NEXT_PUBLIC_API_URL=http://localhost:9090" > frontend/docker.env
+
       - name: Extract metadata for backend
         id: meta-backend
         uses: docker/metadata-action@v5
@@ -49,6 +60,8 @@ jobs:
           push: true
           tags: ${{ steps.meta-backend.outputs.tags }}
           labels: ${{ steps.meta-backend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Extract metadata for frontend
         id: meta-frontend
@@ -68,6 +81,8 @@ jobs:
           push: true
           tags: ${{ steps.meta-frontend.outputs.tags }}
           labels: ${{ steps.meta-frontend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Summary
         run: |
