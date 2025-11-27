@@ -1,20 +1,19 @@
 services:
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: arbeit-frontend
-    ports:
-      - "80:80"
-    env_file:
-      - ./frontend/.env
+  mysql:
+    image: mysql:8.0
+    container_name: arbeit-mysql
+    restart: unless-stopped
     environment:
-      NODE_ENV: production
+      MYSQL_ROOT_PASSWORD: 2300032238
+      MYSQL_DATABASE: arbeit
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    command: --default-authentication-plugin=caching_sha2_password --mysqlx=0
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
       - arbeit-network
-    restart: unless-stopped
-    depends_on:
-      - backend
 
   backend:
     build:
@@ -24,11 +23,30 @@ services:
     ports:
       - "9090:9090"
     env_file:
-      - ./backend/.env
+      - ./backend/docker.env
     environment:
       SPRING_PROFILES_ACTIVE: docker
       JAVA_OPTS: "-Xmx512m -Xms256m"
       SERVER_PORT: 9090
+    depends_on:
+      - mysql
+    networks:
+      - arbeit-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        ENV_FILE: docker.env
+    container_name: arbeit-frontend
+    ports:
+      - "8080:80"
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - backend
     networks:
       - arbeit-network
     restart: unless-stopped
@@ -36,3 +54,6 @@ services:
 networks:
   arbeit-network:
     driver: bridge
+
+volumes:
+  mysql-data:
