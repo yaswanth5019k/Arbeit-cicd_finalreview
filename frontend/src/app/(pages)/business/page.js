@@ -1086,7 +1086,7 @@ export default function BusinessDashboard() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#3b82f6',
+                      color: '#14b8a6',
                       fontWeight: 500
                     }}>
                       Applications Chart
@@ -1103,7 +1103,7 @@ export default function BusinessDashboard() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#3b82f6',
+                      color: '#14b8a6',
                       fontWeight: 500
                     }}>
                       Hiring Progress Chart
@@ -1120,7 +1120,7 @@ export default function BusinessDashboard() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#3b82f6',
+                      color: '#14b8a6',
                       fontWeight: 500
                     }}>
                       Categories Chart
@@ -1137,7 +1137,7 @@ export default function BusinessDashboard() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#3b82f6',
+                      color: '#14b8a6',
                       fontWeight: 500
                     }}>
                       Sources Chart

@@ -35,26 +35,26 @@ export default function Nav() {
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-blue-600">
-            Arbeit
+          <Link href="/" className="text-2xl font-bold text-teal-500">
+            SkillHive
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('features')}
-              className={`${isScrolled ? 'text-gray-600' : 'text-gray-800'} hover:text-blue-600 transition-colors`}
+              className={`${isScrolled ? 'text-gray-600' : 'text-gray-800'} hover:text-teal-500 transition-colors`}
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection('how-it-works')}
-              className={`${isScrolled ? 'text-gray-600' : 'text-gray-800'} hover:text-blue-600 transition-colors`}
+              className={`${isScrolled ? 'text-gray-600' : 'text-gray-800'} hover:text-teal-500 transition-colors`}
             >
               How It Works
             </button>
             <button
               onClick={() => router.push('/scanner')}
-              className={`${isScrolled ? 'text-gray-600' : 'text-gray-800'} hover:text-blue-600 transition-colors`}
+              className={`${isScrolled ? 'text-gray-600' : 'text-gray-800'} hover:text-teal-500 transition-colors`}
             >
               ATS Scanner
             </button>
@@ -63,13 +63,13 @@ export default function Nav() {
           <div className="flex items-center space-x-4">
             <Link
               href="/Bauth"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl transition-colors shadow-lg hover:shadow-xl"
+              className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-2 rounded-xl transition-colors shadow-lg hover:shadow-xl"
             >
               For Recruiters
             </Link>
             <Link
               href="/auth"
-              className="bg-white hover:bg-blue-50 text-blue-600 px-6 py-2 rounded-xl transition-colors border-2 border-blue-600"
+              className="bg-white hover:bg-teal-50 text-teal-500 px-6 py-2 rounded-xl transition-colors border-2 border-teal-500"
             >
               For Freelancers
             </Link>

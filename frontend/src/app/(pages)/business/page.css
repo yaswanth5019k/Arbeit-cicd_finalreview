@@ -1,6 +1,6 @@
 :root {
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
+  --primary: #14b8a6;
+  --primary-dark: #14b8a6;
   --text-dark: #111827;
   --text-light: #6b7280;
   --border-color: #e5e7eb;
@@ -28,7 +28,7 @@
 }
 
 .primary-btn {
-  background: #3b82f6;
+  background: #14b8a6;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -39,14 +39,14 @@
 }
 
 .primary-btn:hover {
-  background: #2563eb;
+  background: #14b8a6;
   transform: translateY(-2px);
 }
 
 .secondary-btn {
   background: white;
-  color: #3b82f6;
-  border: 1px solid #3b82f6;
+  color: #14b8a6;
+  border: 1px solid #14b8a6;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-weight: 600;
@@ -83,7 +83,7 @@
 }
 
 .tab.active {
-  background: #3b82f6;
+  background: #14b8a6;
   color: white;
 }
 
@@ -212,7 +212,7 @@ td {
 td:first-child {
   font-family: monospace;
   font-weight: 600;
-  color: #3b82f6;
+  color: #14b8a6;
   font-size: 0.9rem;
 }
 

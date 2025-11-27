@@ -158,7 +158,7 @@ export default function AuthPage() {
           </div>
           <div className="brand-content">
             <div className="logo">
-              <span className="logo-main">Arbeit</span>
+              <span className="logo-main">SkillHive</span>
             </div>
             <div className="hero-text">
               <h1>

@@ -194,7 +194,7 @@ export default function ScannerPage() {
         </div>
 
         <div className="mb-6">
-          <div className="relative border-2 border-dashed border-gray-300 rounded-xl p-8 transition-all hover:border-blue-500 group">
+          <div className="relative border-2 border-dashed border-gray-300 rounded-xl p-8 transition-all hover:border-teal-400 group">
             <input
               type="file"
               accept="application/pdf"
@@ -203,13 +203,13 @@ export default function ScannerPage() {
             />
             <div className="text-center">
               <div className="mb-4">
-                <svg className="mx-auto h-12 w-12 text-gray-400 group-hover:text-blue-500 transition-colors" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                <svg className="mx-auto h-12 w-12 text-gray-400 group-hover:text-teal-400 transition-colors" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                   <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <div className="flex flex-col items-center text-center">
                 <p className="text-gray-600">
-                  <span className="font-medium text-blue-600 hover:text-blue-500">
+                  <span className="font-medium text-teal-500 hover:text-teal-400">
                     Click to upload
                   </span>
                   {' '}or drag and drop
@@ -233,7 +233,7 @@ export default function ScannerPage() {
         <button
           onClick={analyzeResume}
           disabled={!file || loading}
-          className={`w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-xl font-medium
+          className={`w-full bg-gradient-to-r from-teal-500 to-teal-600 text-white py-3 px-4 rounded-xl font-medium
             transition-all duration-200 transform hover:translate-y-[-2px] hover:shadow-lg
             ${(!file || loading) ? 'opacity-50 cursor-not-allowed hover:translate-y-0 hover:shadow-none' : ''}`}
         >
@@ -254,29 +254,29 @@ export default function ScannerPage() {
         </button>
 
         {loading && (
-          <div className="mt-6 bg-blue-50 rounded-lg p-4">
+          <div className="mt-6 bg-teal-50 rounded-lg p-4">
             <div className="flex items-center justify-center space-x-3">
               <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                <div className="w-2 h-2 bg-teal-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 bg-teal-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 bg-teal-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
               </div>
-              <span className="text-blue-800 font-medium">{loadingStage}</span>
+              <span className="text-teal-700 font-medium">{loadingStage}</span>
             </div>
           </div>
         )}
       </div>
 
       {error && (
-        <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8">
+        <div className="bg-teal-50 border-l-4 border-teal-400 p-4 mb-8">
           <div className="flex">
             <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <svg className="h-5 w-5 text-teal-400" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
               </svg>
             </div>
             <div className="ml-3">
-              <p className="text-sm text-red-700">{error}</p>
+              <p className="text-sm text-teal-600">{error}</p>
             </div>
           </div>
         </div>

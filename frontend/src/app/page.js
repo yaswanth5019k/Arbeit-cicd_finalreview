@@ -47,10 +47,34 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* New Background */}
-      <div className="absolute top-0 -z-10 h-full w-full bg-white">
-        <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] translate-x-[20%] translate-y-[20%] rounded-full bg-[rgba(59,130,246,0.5)] opacity-50 blur-[80px]"></div>
+      <div className="fixed top-0 left-0 -z-10 h-full w-full bg-white">
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-96 h-96 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
+
+      <style jsx>{`
+        @keyframes blob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+        .bg-pos-0 {
+          background-position: 0% 50%;
+        }
+        .bg-pos-100:hover {
+          background-position: 100% 50%;
+        }
+      `}</style>
 
       <Nav />
 
@@ -80,21 +104,29 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  Find Your{' '}
-                  <span className="text-blue-600">
-                    Dream
+                  Where{' '}
+                  <span className="text-teal-500 relative">
+                    Talent
+                    <motion.span
+                      className="absolute -bottom-2 left-0 right-0 h-3 bg-teal-100 -z-10"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ delay: 1, duration: 0.8 }}
+                    />
                   </span>
                   <br />
-                  Career Today
+                  Meets{' '}
+                  <span className="text-teal-500">Opportunity</span>
                 </motion.h1>
 
                 <motion.p 
-                  className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto lg:mx-0"
+                  className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  Your one-stop platform for job search, resume building, and career growth.
+                  <span className="font-semibold text-gray-800">SkillHive</span> connects ambitious professionals with their perfect roles. 
+                  Build stunning resumes, ace interviews, and land your dream job—all in one platform.
                 </motion.p>
 
                 <motion.div
@@ -105,20 +137,31 @@ export default function Home() {
                 >
                   <Link href="/Bauth">
                     <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 transition-all"
+                      whileHover={{ scale: 1.05, rotate: 1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-xl font-semibold text-lg shadow-lg shadow-teal-400/30 hover:shadow-2xl hover:shadow-teal-400/40 transition-all relative overflow-hidden"
                     >
-                      Get Started as Recruiter
+                      <span className="relative z-10 flex items-center gap-2 justify-center">
+                        🚀 Hire Top Talent
+                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </motion.button>
                   </Link>
                   <Link href="/auth">
                     <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full sm:w-auto px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold text-lg border-2 border-blue-600 hover:bg-blue-50 transition-all"
+                      whileHover={{ scale: 1.05, rotate: -1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group w-full sm:w-auto px-8 py-4 bg-white text-teal-500 rounded-xl font-semibold text-lg border-2 border-teal-500 hover:bg-teal-50 transition-all relative overflow-hidden"
                     >
-                      Join as Freelancer
+                      <span className="flex items-center gap-2 justify-center">
+                        ✨ Find Your Dream Job
+                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </span>
                     </motion.button>
                   </Link>
                 </motion.div>
@@ -132,15 +175,15 @@ export default function Home() {
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 <div className="relative w-full aspect-square">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-white rounded-3xl transform rotate-6" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-teal-100 to-white rounded-3xl transform rotate-6" />
                   <div className="absolute inset-0 bg-white rounded-3xl shadow-xl p-8">
                     <div className="relative h-full">
                       {/* Resume Preview */}
                       <div className="absolute top-4 left-4 right-4 bottom-4 bg-gray-50 rounded-2xl p-6 shadow-inner">
                         {/* Header with Avatar */}
                         <div className="flex items-center gap-4 mb-6">
-                          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                            <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center">
+                            <svg className="w-8 h-8 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                           </div>
@@ -152,19 +195,19 @@ export default function Home() {
                         {/* Content Lines */}
                         <div className="space-y-4">
                           <div className="flex items-center gap-2">
-                            <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-4 h-4 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                             <div className="h-3 bg-gray-200 rounded w-full"></div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-4 h-4 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
                             <div className="h-3 bg-gray-200 rounded w-5/6"></div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-4 h-4 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                             </svg>
                             <div className="h-3 bg-gray-200 rounded w-4/6"></div>
@@ -174,7 +217,7 @@ export default function Home() {
                         <div className="mt-6">
                           <div className="flex flex-wrap gap-2">
                             {["React", "Node.js", "Python", "AI/ML"].map((skill, i) => (
-                              <span key={i} className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm flex items-center gap-1">
+                              <span key={i} className="px-3 py-1 bg-teal-100 text-teal-500 rounded-full text-sm flex items-center gap-1">
                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 8 8">
                                   <circle cx="4" cy="4" r="3" />
                                 </svg>
@@ -185,8 +228,8 @@ export default function Home() {
                         </div>
                       </div>
                       {/* Floating Elements */}
-                      <div className="absolute -right-4 top-1/4 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center transform rotate-12">
-                        <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div className="absolute -right-4 top-1/4 w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center transform rotate-12">
+                        <svg className="w-6 h-6 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </div>
@@ -209,25 +252,27 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { number: "150,000", label: "Active Jobs", icon: "📊" },
-              { number: "75,000", label: "Companies", icon: "🏢" },
-              { number: "2,000,000", label: "Job Seekers", icon: "👥" },
-              { number: "95,000", label: "Success Stories", icon: "🌟" }
+              { number: "250,000", label: "Dream Jobs Listed", icon: "💼", color: "teal" },
+              { number: "85,000", label: "Hiring Companies", icon: "🏢", color: "purple" },
+              { number: "3,500,000", label: "Talented Professionals", icon: "⭐", color: "blue" },
+              { number: "120,000", label: "Success Matches", icon: "🎯", color: "green" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="relative group"
+                transition={{ delay: index * 0.15 }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="relative group cursor-pointer"
               >
-                <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100">
-                  <div className="text-4xl mb-4">{stat.icon}</div>
-                  <h3 className="text-4xl font-bold text-blue-600 mb-2">
+                <div className="bg-gradient-to-br from-white to-teal-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-teal-100 group-hover:border-teal-300">
+                  <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform">{stat.icon}</div>
+                  <h3 className="text-4xl font-bold text-teal-500 mb-2">
                     <AnimatedCounter value={stat.number} />+
                   </h3>
-                  <p className="text-gray-600 text-lg">{stat.label}</p>
+                  <p className="text-gray-700 text-lg font-medium">{stat.label}</p>
+                  <div className="absolute inset-0 bg-gradient-to-br from-teal-400/0 to-teal-400/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </motion.div>
             ))}
@@ -245,50 +290,69 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold mb-6">
-                AI-Powered ATS Scanner
-                <span className="block text-blue-600 mt-2">Optimize Your Resume</span>
+              <h2 className="text-5xl font-bold mb-6 leading-tight">
+                <span className="bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">
+                  AI-Powered ATS Scanner
+                </span>
+                <span className="block text-gray-800 mt-3 text-4xl">Beat The Bots, Land The Job</span>
               </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                Ensure your resume gets past Applicant Tracking Systems with our advanced AI scanner. Get instant feedback and optimization suggestions.
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                🤖 <span className="font-semibold">90% of resumes</span> never reach human eyes. Our intelligent scanner ensures yours does. 
+                Get real-time feedback, keyword optimization, and formatting tips that get you noticed.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                 {[
                   {
                     icon: "🎯",
-                    title: "Keyword Analysis",
-                    description: "Match your resume with job requirements"
+                    title: "Smart Keyword Matching",
+                    description: "Automatically align your resume with job descriptions",
+                    gradient: "from-teal-400 to-cyan-400"
                   },
                   {
-                    icon: "📈",
-                    title: "Score Tracking",
-                    description: "Get detailed performance metrics"
+                    icon: "📊",
+                    title: "Instant ATS Score",
+                    description: "See how recruiters will rate your application",
+                    gradient: "from-purple-400 to-pink-400"
                   },
                   {
-                    icon: "💡",
-                    title: "Smart Suggestions",
-                    description: "Receive AI-powered improvements"
+                    icon: "✨",
+                    title: "AI Recommendations",
+                    description: "Get personalized tips to boost your chances",
+                    gradient: "from-amber-400 to-orange-400"
                   },
                   {
                     icon: "⚡",
-                    title: "Instant Results",
-                    description: "See feedback in real-time"
+                    title: "Lightning Fast",
+                    description: "Results in under 3 seconds—no waiting!",
+                    gradient: "from-blue-400 to-indigo-400"
                   }
                 ].map((feature, index) => (
-                  <div key={index} className="bg-white p-6 rounded-xl shadow-lg">
-                    <span className="text-3xl mb-4 block">{feature.icon}</span>
-                    <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                    <p className="text-gray-600">{feature.description}</p>
-                  </div>
+                  <motion.div 
+                    key={index} 
+                    className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all relative overflow-hidden"
+                    whileHover={{ y: -4 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${feature.gradient} opacity-10 rounded-bl-full`} />
+                    <span className="text-4xl mb-4 block transform group-hover:scale-110 transition-transform">{feature.icon}</span>
+                    <h3 className="font-bold text-lg mb-2 text-gray-800">{feature.title}</h3>
+                    <p className="text-gray-600 text-sm">{feature.description}</p>
+                  </motion.div>
                 ))}
               </div>
               <Link href="/scanner">
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 transition-all"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group px-8 py-4 bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-500 text-white rounded-xl font-semibold text-lg shadow-xl shadow-teal-400/30 hover:shadow-2xl hover:shadow-teal-400/50 transition-all duration-300 flex items-center gap-3"
                 >
-                  Scan Your Resume
+                  🚀 Scan Your Resume Now
+                  <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </motion.button>
               </Link>
             </motion.div>
@@ -305,12 +369,12 @@ export default function Home() {
                   {/* Scanner Header */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                      <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
                         <span className="text-xl">🔍</span>
                       </div>
                       <div className="font-semibold text-gray-800">ATS Score Analysis</div>
                     </div>
-                    <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-12 rounded-full bg-teal-500 flex items-center justify-center text-white font-bold">
                       92
                     </div>
                   </div>
@@ -319,7 +383,7 @@ export default function Home() {
                     <div>
                       <div className="flex justify-between mb-1">
                         <span className="text-sm text-gray-600">Keywords Match</span>
-                        <span className="text-sm font-medium text-blue-600">95%</span>
+                        <span className="text-sm font-medium text-teal-500">95%</span>
                       </div>
                       <div className="h-2 bg-gray-100 rounded-full">
                         <div className="h-2 bg-green-400 rounded-full" style={{width: "95%"}}></div>
@@ -328,7 +392,7 @@ export default function Home() {
                     <div>
                       <div className="flex justify-between mb-1">
                         <span className="text-sm text-gray-600">Format Optimization</span>
-                        <span className="text-sm font-medium text-blue-600">88%</span>
+                        <span className="text-sm font-medium text-teal-500">88%</span>
                       </div>
                       <div className="h-2 bg-gray-100 rounded-full">
                         <div className="h-2 bg-yellow-400 rounded-full" style={{width: "88%"}}></div>
@@ -337,10 +401,10 @@ export default function Home() {
                     <div>
                       <div className="flex justify-between mb-1">
                         <span className="text-sm text-gray-600">Content Quality</span>
-                        <span className="text-sm font-medium text-blue-600">92%</span>
+                        <span className="text-sm font-medium text-teal-500">92%</span>
                       </div>
                       <div className="h-2 bg-gray-100 rounded-full">
-                        <div className="h-2 bg-blue-400 rounded-full" style={{width: "92%"}}></div>
+                        <div className="h-2 bg-teal-400 rounded-full" style={{width: "92%"}}></div>
                       </div>
                     </div>
                   </div>
@@ -433,7 +497,7 @@ export default function Home() {
                 className="group relative"
               >
                 <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all h-full">
-                  <div className="absolute -top-4 right-8 bg-blue-600 text-white text-sm font-medium px-4 py-1 rounded-full">
+                  <div className="absolute -top-4 right-8 bg-teal-500 text-white text-sm font-medium px-4 py-1 rounded-full">
                     {feature.stats}
                   </div>
                   <div className="text-4xl mb-6 group-hover:scale-110 transition-transform flex justify-center">
@@ -514,7 +578,7 @@ export default function Home() {
                   <p className="text-gray-600 text-center">{step.description}</p>
                 </div>
                 {index < 2 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-8 text-blue-600 transform translate-x-full">
+                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-8 text-teal-500 transform translate-x-full">
                     →
                   </div>
                 )}
@@ -536,7 +600,7 @@ export default function Home() {
             >
               <h2 className="text-4xl font-bold mb-6">
                 AI-Powered Mentorship
-                <span className="block text-blue-600 mt-2">& Goal Tracking</span>
+                <span className="block text-teal-500 mt-2">& Goal Tracking</span>
               </h2>
               <p className="text-xl text-gray-600 mb-8">
                 Get personalized career guidance and track your professional growth with our intelligent mentorship system.
@@ -578,7 +642,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold text-lg shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 transition-all"
+                  className="px-8 py-4 bg-teal-500 text-white rounded-xl font-semibold text-lg shadow-lg shadow-teal-400/20 hover:shadow-xl hover:shadow-teal-400/30 transition-all"
                 >
                   Start Your Journey
                 </motion.button>
@@ -597,7 +661,7 @@ export default function Home() {
                   {/* Dashboard Header */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                      <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center">
                         <span className="text-2xl">👨‍🏫</span>
                       </div>
                       <div>
@@ -614,7 +678,7 @@ export default function Home() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <h4 className="font-semibold">Current Goals</h4>
-                      <span className="text-blue-600 text-sm">3/5 Completed</span>
+                      <span className="text-teal-500 text-sm">3/5 Completed</span>
                     </div>
                     <div className="space-y-3">
                       <div className="bg-gray-50 p-4 rounded-xl">
@@ -629,10 +693,10 @@ export default function Home() {
                       <div className="bg-gray-50 p-4 rounded-xl">
                         <div className="flex items-center justify-between mb-2">
                           <span className="font-medium">System Design</span>
-                          <span className="text-blue-600">60%</span>
+                          <span className="text-teal-500">60%</span>
                         </div>
                         <div className="h-2 bg-gray-200 rounded-full">
-                          <div className="h-2 bg-blue-400 rounded-full" style={{width: "60%"}}></div>
+                          <div className="h-2 bg-teal-400 rounded-full" style={{width: "60%"}}></div>
                         </div>
                       </div>
                     </div>
@@ -658,7 +722,7 @@ export default function Home() {
                         </motion.button>
                       </div>
                       <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-xl">
-                        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                        <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-teal-500">
                           <span>📚</span>
                         </div>
                         <div className="flex-1">
@@ -667,7 +731,7 @@ export default function Home() {
                         </div>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
-                          className="px-4 py-2 bg-blue-100 text-blue-600 rounded-lg text-sm font-medium"
+                          className="px-4 py-2 bg-teal-100 text-teal-500 rounded-lg text-sm font-medium"
                         >
                           Plan
                         </motion.button>
@@ -680,7 +744,7 @@ export default function Home() {
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex-1 py-3 bg-blue-600 text-white rounded-xl font-medium"
+                      className="flex-1 py-3 bg-teal-500 text-white rounded-xl font-medium"
                     >
                       Schedule Session
                     </motion.button>
@@ -753,7 +817,7 @@ export default function Home() {
               >
                 <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xl">
+                    <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center text-teal-500 font-bold text-xl">
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
@@ -770,7 +834,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 relative overflow-hidden">
+      <section className="py-20 bg-teal-500 relative overflow-hidden">
         <motion.div
           className="absolute inset-0 opacity-10"
           style={{
@@ -810,7 +874,7 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+                className="px-8 py-4 bg-white text-teal-500 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
               >
                 Get Started Now
               </motion.button>
@@ -826,38 +890,38 @@ export default function Home() {
             <div>
               <h4 className="text-lg font-semibold mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">About Us</Link></li>
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Careers</Link></li>
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Contact</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">About Us</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Careers</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Contact</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Resources</h4>
               <ul className="space-y-2">
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Blog</Link></li>
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Guides</Link></li>
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">FAQ</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Blog</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Guides</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">FAQ</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Legal</h4>
               <ul className="space-y-2">
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Privacy</Link></li>
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Terms</Link></li>
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Security</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Privacy</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Terms</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Security</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Connect</h4>
               <ul className="space-y-2">
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Twitter</Link></li>
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">LinkedIn</Link></li>
-                <li><Link href="#" className="text-gray-600 hover:text-blue-600">Facebook</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Twitter</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">LinkedIn</Link></li>
+                <li><Link href="#" className="text-gray-600 hover:text-teal-500">Facebook</Link></li>
               </ul>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-gray-200 text-center text-gray-600">
-            <p>&copy; 2024 Arbeit. All rights reserved.</p>
+            <p>&copy; 2024 SkillHive. All rights reserved.</p>
           </div>
         </div>
       </footer>

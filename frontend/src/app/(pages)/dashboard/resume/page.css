@@ -95,7 +95,7 @@
   }
   
   .input-field:focus {
-    border-color: #2563eb;
+    border-color: #14b8a6;
     outline: none;
   }
   
@@ -111,12 +111,12 @@
   }
   
   .textarea-field:focus {
-    border-color: #2563eb;
+    border-color: #14b8a6;
     outline: none;
   }
   
   .add-button {
-    background: #2563eb;
+    background: #14b8a6;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -127,7 +127,7 @@
   }
   
   .add-button:hover {
-    background: #1d4ed8;
+    background: #0d9488;
   }
   
   .preview-header {
@@ -138,7 +138,7 @@
   }
   
   .generate-button {
-    background: #2563eb;
+    background: #14b8a6;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -149,7 +149,7 @@
   }
   
   .generate-button:hover {
-    background: #1d4ed8;
+    background: #0d9488;
   }
   
   /* Resume Preview Styles */
@@ -299,7 +299,7 @@
   
   /* Add Education Button */
   .add-education-button {
-    background: #2563eb;
+    background: #14b8a6;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -311,7 +311,7 @@
   }
   
   .add-education-button:hover {
-    background: #1d4ed8;
+    background: #0d9488;
   }
   
   /* Responsive Design */
@@ -374,7 +374,7 @@
   }
   
   .step.active .step-circle {
-    background: #2563eb;
+    background: #14b8a6;
     color: white;
   }
   
@@ -385,7 +385,7 @@
   }
   
   .step.active .step-label {
-    color: #2563eb;
+    color: #14b8a6;
   }
   
   /* Back Button */
@@ -439,13 +439,13 @@
   }
   
   .template-card:hover {
-    border-color: #2563eb;
+    border-color: #14b8a6;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .template-card.selected {
-    border-color: #2563eb;
+    border-color: #14b8a6;
     background-color: #f0f7ff;
   }
   
@@ -490,7 +490,7 @@
     justify-content: center;
     gap: 2rem;
     margin-bottom: 2rem;
-    color: #2563eb;
+    color: #14b8a6;
   }
   
   /* Professional Template Styles */
@@ -502,7 +502,7 @@
   
   .professional-header {
     text-align: center;
-    border-bottom: 3px double #2563eb;
+    border-bottom: 3px double #14b8a6;
     padding-bottom: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -524,7 +524,7 @@
   }
   
   .professional-contact i {
-    color: #2563eb;
+    color: #14b8a6;
     margin-right: 0.5rem;
   }
   
@@ -537,7 +537,7 @@
     font-size: 1.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-bottom: 1px solid #2563eb;
+    border-bottom: 1px solid #14b8a6;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
   }
@@ -602,7 +602,7 @@
   
   .creative-header h1 {
     font-size: 2.5rem;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
@@ -624,7 +624,7 @@
   }
   
   .creative-contact i {
-    color: #2563eb;
+    color: #14b8a6;
   }
   
   .creative-section {
@@ -636,7 +636,7 @@
   }
   
   .creative-section h2 {
-    color: #2563eb;
+    color: #14b8a6;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     display: flex;
@@ -674,7 +674,7 @@
   }
   
   .social-link {
-    color: #2563eb;
+    color: #14b8a6;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -683,14 +683,14 @@
   }
   
   .social-link:hover {
-    color: #1d4ed8;
+    color: #0d9488;
   }
   
   .creative-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #2563eb;
+    color: #14b8a6;
     text-decoration: none;
     margin-top: 1rem;
     font-size: 0.9rem;
@@ -819,7 +819,7 @@
   }
   
   .technical-section h2 i {
-    color: #2563eb;
+    color: #14b8a6;
   }
   
   .technical-tags {
@@ -857,7 +857,7 @@
   }
   
   .github-link {
-    color: #2563eb;
+    color: #14b8a6;
     text-decoration: none;
     font-size: 0.9rem;
     display: flex;
@@ -913,7 +913,7 @@
   .modern-layout h1 {
     font-size: 16pt;
     text-align: center;
-    color: #2563eb;
+    color: #14b8a6;
     margin-bottom: 14pt;
     font-weight: 600;
   }
@@ -928,7 +928,7 @@
   }
   
   .modern-layout .contact-info i {
-    color: #2563eb;
+    color: #14b8a6;
     margin-right: 0.5rem;
   }
   
@@ -940,7 +940,7 @@
   }
   
   .modern-layout .social-links i {
-    color: #2563eb;
+    color: #14b8a6;
     margin-right: 0.5rem;
   }
   
@@ -949,7 +949,7 @@
   }
   
   .modern-section h2 {
-    color: #2563eb;
+    color: #14b8a6;
     font-size: 1.5rem;
     border-bottom: 2px solid #e5e7eb;
     padding-bottom: 0.5rem;
@@ -988,7 +988,7 @@
   }
   
   .modern-item .technologies {
-    color: #2563eb;
+    color: #14b8a6;
     font-size: 0.9rem;
     margin-top: 0.5rem;
   }
@@ -1008,7 +1008,7 @@
   
   .professional-header {
     text-align: center;
-    border-bottom: 3px double #2563eb;
+    border-bottom: 3px double #14b8a6;
     padding-bottom: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -1101,7 +1101,7 @@
   
   .creative-header h1 {
     font-size: 2.5rem;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
@@ -1123,7 +1123,7 @@
   }
   
   .creative-contact i {
-    color: #2563eb;
+    color: #14b8a6;
   }
   
   .creative-section {
@@ -1135,7 +1135,7 @@
   }
   
   .creative-section h2 {
-    color: #2563eb;
+    color: #14b8a6;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     display: flex;
@@ -1194,7 +1194,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #2563eb;
+    color: #14b8a6;
     text-decoration: none;
     margin-top: 1rem;
     font-size: 0.9rem;
@@ -1362,7 +1362,7 @@
   }
   
   .github-link {
-    color: #2563eb;
+    color: #14b8a6;
     text-decoration: none;
     font-size: 0.9rem;
     display: flex;
@@ -1454,7 +1454,7 @@
     font-family: Arial, sans-serif !important;
     font-size: 18pt;
     margin: 6pt 0 10pt 0;
-    color: #2563eb;
+    color: #14b8a6;
   }
   
   .modern-template .section-header {
@@ -1602,7 +1602,7 @@
   
   /* Modern Template Sections */
   .modern-template .section-header {
-    color: #2563eb;
+    color: #14b8a6;
     font-size: 13pt;
     border-bottom: 2pt solid #e5e7eb;
     margin: 16pt 0 10pt 0;
@@ -1748,7 +1748,7 @@
   
   /* Modern Template */
   .modern-template .heading-text {
-    color: #2563eb;
+    color: #14b8a6;
     font-size: 13pt;
     font-style: normal;
     margin-bottom: 10pt;
