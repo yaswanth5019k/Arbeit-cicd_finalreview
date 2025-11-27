@@ -66,6 +66,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Create dummy env files for build validation
+        run: |
+          touch backend/docker.env
+          touch frontend/docker.env
+
       - name: Build images
         run: docker compose build --progress=plain
 
