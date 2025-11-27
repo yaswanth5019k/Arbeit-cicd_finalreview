@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skillhive-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skillhive-backend
+  template:
+    metadata:
+      labels:
+        app: skillhive-backend
+    spec:
+      containers:
+        - name: skillhive-backend
+          image: yaswanthkalluri/skillhive-backend:latest
+          ports:
+            - containerPort: 9090
+          env:
+            - name: SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE
+              value: "5"
+            - name: SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE
+              value: "2"
+          envFrom:
+            - configMapRef:
+                name: backend-config
+            - secretRef:
+                name: backend-secret
