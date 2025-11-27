@@ -5,6 +5,7 @@ import { useAuth } from "../../../context/AuthContext"
 import { useRouter } from 'next/navigation';
 import { Toaster, toast } from 'react-hot-toast';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -151,15 +152,24 @@ export default function AuthPage() {
 
   return (
     <div className="auth-container">
+      <Link 
+        href="/" 
+        className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all text-teal-500 font-semibold border border-teal-100 hover:border-teal-300"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Home
+      </Link>
       <div className="split-container">
         <div className="animated-side">
           <div className="absolute top-0 -z-10 h-full w-full bg-white">
             <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
           </div>
           <div className="brand-content">
-            <div className="logo">
+            <Link href="/" className="logo" style={{ cursor: 'pointer', textDecoration: 'none' }}>
               <span className="logo-main">SkillHive</span>
-            </div>
+            </Link>
             <div className="hero-text">
               <h1>
                 <span className="text-gradient">Organize</span>

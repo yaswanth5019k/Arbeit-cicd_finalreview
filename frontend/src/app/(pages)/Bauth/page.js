@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import { useAuth } from '../../../context/AuthContext';
 import BusinessNetwork from '@/app/components/Globe/Globe';
+import Link from 'next/link';
 import './page.css';
 
 const Bauthen = () => {
@@ -124,6 +125,15 @@ const Bauthen = () => {
 
   return (
     <div className="page-container">
+      <Link 
+        href="/" 
+        className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all text-teal-500 font-semibold border border-teal-100 hover:border-teal-300"
+      >
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Home
+      </Link>
       <Toaster position="top-right" />
       <div className="outer-container">
         <div className="auth-container">
