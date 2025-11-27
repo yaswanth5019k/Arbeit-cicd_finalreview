@@ -40,13 +40,29 @@ docker compose down --remove-orphans
 
 Two workflows now live under `.github/workflows/`:
 
-1. `ci.yml` – Runs on pushes/PRs. It:
-   - builds & tests the backend with Maven (Java 17),
-   - installs & builds the frontend with Node 18,
-   - ensures `docker compose build` succeeds (validates the container stack).
+1. **`ci.yml`** – Runs on pushes/PRs to validate code quality:
+   - Builds & tests the backend with Maven (Java 21)
+   - Installs & builds the frontend with Node 18
+   - Ensures `docker compose build` succeeds (validates the container stack)
 
-2. `deploy.yml` – Existing SSH-based deployment that pulls the repo on your EC2 box
-   and runs `docker compose up -d --build`.
+2. **`deploy.yml`** – Runs on pushes to `main` branch:
+   - Builds Docker images for backend and frontend
+   - Publishes images to GitHub Container Registry (GHCR)
+   - Images are available at:
+     - `ghcr.io/yaswanth5019k/arbeit-cicd_finalreview/backend:latest`
+     - `ghcr.io/yaswanth5019k/arbeit-cicd_finalreview/frontend:latest`
+
+### Using Published Images
+
+Pull and run the published images:
+
+```bash
+# Pull images
+docker pull ghcr.io/yaswanth5019k/arbeit-cicd_finalreview/backend:latest
+docker pull ghcr.io/yaswanth5019k/arbeit-cicd_finalreview/frontend:latest
+
+# Or use them in your docker-compose.yml
+```
 
 Keep `backend/docker.env` and `frontend/docker.env` in sync with any credential
 changes so Compose and the deployment workflow keep functioning.
