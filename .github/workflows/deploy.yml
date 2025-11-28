@@ -41,6 +41,7 @@ jobs:
           echo "DB_PASSWORD=password" >> backend/docker.env
           echo "JWT_SECRET=dummy-secret-key" >> backend/docker.env
           echo "NEXT_PUBLIC_API_URL=http://localhost:9090" > frontend/docker.env
+          echo "NEXT_PUBLIC_API_URL=http://localhost:9090" > frontend/.env
 
       - name: Extract metadata for backend
         id: meta-backend
