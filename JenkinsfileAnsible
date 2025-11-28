@@ -1,0 +1,96 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK_HOME'
+        maven 'MAVEN_HOME'
+        nodejs 'NODE_HOME'
+    }
+
+    environment {
+        ANSIBLE_HOME = '/usr/local/bin'
+        ANSIBLE_CONFIG = "${WORKSPACE}/ansible/ansible.cfg"
+    }
+
+    stages {
+
+        /* ========== 1. Checkout Code ========== */
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/yaswanth5019k/Arbeit-cicd_finalreview.git', branch: 'main'
+            }
+        }
+
+        /* ========== 2. Build Backend ========== */
+        stage('Build Backend') {
+            steps {
+                dir('backend') {
+                    sh 'mvn clean package -DskipTests'
+                }
+            }
+        }
+
+        /* ========== 3. Build Frontend ========== */
+        stage('Build Frontend') {
+            steps {
+                dir('frontend') {
+                    script {
+                        def nodeHome = tool name: 'NODE_HOME', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+                        env.PATH = "${nodeHome}/bin:${env.PATH}"
+                    }
+                    sh 'npm install'
+                    sh 'npm run build'
+                    sh 'npm run export'
+                }
+            }
+        }
+
+        /* ========== 4. Deploy with Ansible ========== */
+        stage('Deploy with Ansible') {
+            steps {
+                dir('ansible') {
+                    sh '''
+                        ansible-playbook -i inventory/hosts.ini \
+                        playbooks/deploy-full.yml \
+                        --extra-vars "ansible_become_pass=${ANSIBLE_SUDO_PASS}" \
+                        -v
+                    '''
+                }
+            }
+        }
+
+        /* ========== 5. Verify Deployment ========== */
+        stage('Verify Deployment') {
+            steps {
+                script {
+                    sh '''
+                        echo "Waiting for applications to be fully deployed..."
+                        sleep 10
+                        
+                        echo "Checking backend health..."
+                        curl -f http://localhost:9090/api/health || echo "Backend health check failed"
+                        
+                        echo "Checking frontend..."
+                        curl -f http://localhost:8080/arbeit || echo "Frontend check failed"
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '========================================='
+            echo 'Deployment SUCCESS!'
+            echo 'Backend: http://localhost:9090/api'
+            echo 'Frontend: http://localhost:8080/arbeit'
+            echo '========================================='
+        }
+        failure {
+            echo 'Deployment FAILED! Check logs above.'
+        }
+        always {
+            echo 'Cleaning up workspace...'
+        }
+    }
+}

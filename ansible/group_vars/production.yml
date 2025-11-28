@@ -1,0 +1,17 @@
+---
+# Production-specific variables
+
+app_env: production
+
+# Production Tomcat settings
+tomcat_home: "/opt/tomcat10"
+tomcat_port: 80
+
+# Production database
+db_host: "prod-db.example.com"
+db_port: 3306
+
+# Additional production settings
+enable_ssl: true
+backup_enabled: true
+monitoring_enabled: true

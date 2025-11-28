@@ -1,0 +1,54 @@
+---
+- name: Deploy Complete Arbeit Application (Localhost)
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  become: no
+  
+  vars:
+    backend_jar_path: "{{ playbook_dir }}/../../backend/target/arbeits-backend.jar"
+    frontend_build_path: "{{ playbook_dir }}/../../frontend/out"
+    app_port: 9090
+    
+  tasks:
+    - name: Display deployment info
+      debug:
+        msg:
+          - "========================================="
+          - "Starting Local Deployment"
+          - "Backend JAR: {{ backend_jar_path }}"
+          - "Frontend: {{ frontend_build_path }}"
+          - "========================================="
+    
+    - name: Check if backend JAR exists
+      stat:
+        path: "{{ backend_jar_path }}"
+      register: jar_file
+      
+    - name: Check if frontend build exists
+      stat:
+        path: "{{ frontend_build_path }}"
+      register: frontend_build
+      
+    - name: Verify artifacts
+      debug:
+        msg:
+          - "Backend JAR exists: {{ jar_file.stat.exists }}"
+          - "Frontend build exists: {{ frontend_build.stat.exists }}"
+          
+    - name: Display success message
+      debug:
+        msg:
+          - "========================================="
+          - "Build artifacts verified successfully!"
+          - "Backend: ✓"
+          - "Frontend: ✓"
+          - "========================================="
+          - ""
+          - "To run the application:"
+          - "1. Start backend: java -jar {{ backend_jar_path }}"
+          - "2. Serve frontend from: {{ frontend_build_path }}"
+          - ""
+          - "Or use Docker Compose: docker compose up"
+          - "========================================="
+      when: jar_file.stat.exists and frontend_build.stat.exists

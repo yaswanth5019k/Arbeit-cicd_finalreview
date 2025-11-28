@@ -1,0 +1,78 @@
+---
+- name: Deploy Arbeit Backend to Tomcat
+  hosts: tomcat_servers
+  become: yes
+  
+  vars:
+    backend_war_path: "{{ playbook_dir }}/../../backend/target/arbeits-backend.war"
+    
+  tasks:
+    - name: Check if backend WAR file exists
+      stat:
+        path: "{{ backend_war_path }}"
+      register: war_file
+      delegate_to: localhost
+      become: no
+      
+    - name: Fail if WAR file doesn't exist
+      fail:
+        msg: "Backend WAR file not found at {{ backend_war_path }}. Please build the project first."
+      when: not war_file.stat.exists
+      
+    - name: Stop Tomcat server
+      shell: "{{ tomcat_home }}/bin/shutdown.sh"
+      ignore_errors: yes
+      register: tomcat_stop
+      
+    - name: Wait for Tomcat to stop
+      wait_for:
+        port: "{{ tomcat_port }}"
+        state: stopped
+        timeout: 30
+      ignore_errors: yes
+      
+    - name: Remove old backend deployment
+      file:
+        path: "{{ tomcat_webapps }}/{{ backend_war_name }}"
+        state: absent
+        
+    - name: Remove old backend directory
+      file:
+        path: "{{ tomcat_webapps }}/api"
+        state: absent
+        
+    - name: Copy backend WAR to Tomcat
+      copy:
+        src: "{{ backend_war_path }}"
+        dest: "{{ tomcat_webapps }}/{{ backend_war_name }}"
+        owner: "{{ app_user }}"
+        group: "{{ app_group }}"
+        mode: '0644'
+        
+    - name: Start Tomcat server
+      shell: "{{ tomcat_home }}/bin/startup.sh"
+      
+    - name: Wait for Tomcat to start
+      wait_for:
+        port: "{{ tomcat_port }}"
+        state: started
+        timeout: 60
+        
+    - name: Wait for backend application to deploy
+      wait_for:
+        timeout: 15
+        
+    - name: Check backend health
+      uri:
+        url: "http://localhost:{{ tomcat_port }}/api/health"
+        status_code: 200
+        timeout: 30
+      register: health_check
+      retries: 5
+      delay: 10
+      until: health_check.status == 200
+      ignore_errors: yes
+      
+    - name: Display deployment status
+      debug:
+        msg: "Backend deployed successfully to {{ inventory_hostname }}"

@@ -1,27 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: skillhive-backend
+  name: arbeit-backend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: skillhive-backend
+      app: arbeit-backend
   template:
     metadata:
       labels:
-        app: skillhive-backend
+        app: arbeit-backend
     spec:
       containers:
-        - name: skillhive-backend
-          image: yaswanthkalluri/skillhive-backend:latest
+        - name: arbeit-backend
+          image: yaswanthkalluri/arbeit-backend:temp
           ports:
             - containerPort: 9090
-          env:
-            - name: SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE
-              value: "5"
-            - name: SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE
-              value: "2"
           envFrom:
             - configMapRef:
                 name: backend-config

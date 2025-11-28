@@ -1,32 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: skillhive-ingress
+  name: arbeit-frontend-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "traefik"
 spec:
-  ingressClassName: nginx
   rules:
-    # Frontend
-    - host: skillhive.local
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: skillhive-frontend-service
+                name: arbeit-frontend-service
                 port:
                   number: 80
-
-    # Backend
-    - host: api.skillhive.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: skillhive-backend-service
-                port:
-                  number: 9090

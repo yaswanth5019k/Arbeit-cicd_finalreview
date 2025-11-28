@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: skillhive-frontend
+  name: arbeit-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: skillhive-frontend
+      app: arbeit-frontend
   template:
     metadata:
       labels:
-        app: skillhive-frontend
+        app: arbeit-frontend
     spec:
       containers:
-        - name: skillhive-frontend
-          image: yaswanthkalluri/skillhive-frontend:latest
+        - name: arbeit-frontend
+          image: yaswanthkalluri/arbeit-frontend:temp
           ports:  
             - containerPort: 80
           envFrom:

@@ -1,5 +1,40 @@
 # Arbeit
 
+## 🚀 Deployment Options
+
+This project supports **multiple deployment strategies**:
+
+| Method | Description | Guide |
+|--------|-------------|-------|
+| **Ansible** | Automated deployment to Tomcat servers | [📖 ANSIBLE_GUIDE.md](ANSIBLE_GUIDE.md) |
+| **Kubernetes** | Container orchestration with K8s | See `k8s/` folder |
+| **Docker Compose** | Local development | See below |
+| **Jenkins** | CI/CD pipeline | See `Jenkinsfile` |
+
+---
+
+## 🤖 Ansible Deployment (NEW)
+
+Quick deploy using Ansible automation:
+
+```bash
+# One-time server setup
+./deploy.sh setup
+
+# Deploy complete application
+./deploy.sh full
+
+# Deploy backend only
+./deploy.sh backend
+
+# Deploy frontend only
+./deploy.sh frontend
+```
+
+**📚 Full Ansible documentation:** [ANSIBLE_GUIDE.md](ANSIBLE_GUIDE.md)
+
+---
+
 ## Docker workflow
 
 The repo now contains a complete Docker setup (see `docker-compose.yml`) that builds

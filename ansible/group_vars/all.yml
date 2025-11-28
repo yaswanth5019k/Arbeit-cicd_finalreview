@@ -1,0 +1,33 @@
+---
+# Global variables for all hosts
+
+# Application settings
+app_name: arbeit
+app_user: ubuntu
+app_group: ubuntu
+
+# Tomcat settings
+tomcat_version: "10"
+tomcat_home: "/home/ubuntu/tomcat10"
+tomcat_webapps: "{{ tomcat_home }}/webapps"
+tomcat_port: 8080
+tomcat_shutdown_port: 8005
+
+# Backend settings
+backend_war_source: "../backend/target/arbeits-backend.war"
+backend_war_name: "api.war"
+backend_context_path: "/api"
+
+# Frontend settings
+frontend_build_source: "../frontend/out"
+frontend_app_name: "arbeit"
+
+# Build tools
+maven_home: "/opt/maven"
+node_version: "18.x"
+
+# Database settings (if needed for configuration)
+db_host: "localhost"
+db_port: 3307
+db_name: "arbeit"
+db_user: "root"

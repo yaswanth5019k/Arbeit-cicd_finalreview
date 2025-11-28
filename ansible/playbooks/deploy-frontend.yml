@@ -1,0 +1,83 @@
+---
+- name: Deploy Arbeit Frontend to Tomcat
+  hosts: tomcat_servers
+  become: yes
+  
+  vars:
+    frontend_build_path: "{{ playbook_dir }}/../../frontend/out"
+    
+  tasks:
+    - name: Check if frontend build exists
+      stat:
+        path: "{{ frontend_build_path }}"
+      register: frontend_build
+      delegate_to: localhost
+      become: no
+      
+    - name: Fail if frontend build doesn't exist
+      fail:
+        msg: "Frontend build not found at {{ frontend_build_path }}. Please build the project first."
+      when: not frontend_build.stat.exists
+      
+    - name: Stop Tomcat server
+      shell: "{{ tomcat_home }}/bin/shutdown.sh"
+      ignore_errors: yes
+      
+    - name: Wait for Tomcat to stop
+      wait_for:
+        port: "{{ tomcat_port }}"
+        state: stopped
+        timeout: 30
+      ignore_errors: yes
+      
+    - name: Remove old frontend deployment
+      file:
+        path: "{{ tomcat_webapps }}/{{ frontend_app_name }}"
+        state: absent
+        
+    - name: Create frontend directory
+      file:
+        path: "{{ tomcat_webapps }}/{{ frontend_app_name }}"
+        state: directory
+        owner: "{{ app_user }}"
+        group: "{{ app_group }}"
+        mode: '0755'
+        
+    - name: Copy frontend build to Tomcat
+      synchronize:
+        src: "{{ frontend_build_path }}/"
+        dest: "{{ tomcat_webapps }}/{{ frontend_app_name }}/"
+        delete: yes
+        recursive: yes
+      delegate_to: localhost
+      
+    - name: Set correct permissions
+      file:
+        path: "{{ tomcat_webapps }}/{{ frontend_app_name }}"
+        owner: "{{ app_user }}"
+        group: "{{ app_group }}"
+        recurse: yes
+        
+    - name: Start Tomcat server
+      shell: "{{ tomcat_home }}/bin/startup.sh"
+      
+    - name: Wait for Tomcat to start
+      wait_for:
+        port: "{{ tomcat_port }}"
+        state: started
+        timeout: 60
+        
+    - name: Check frontend accessibility
+      uri:
+        url: "http://localhost:{{ tomcat_port }}/{{ frontend_app_name }}"
+        status_code: 200
+        timeout: 30
+      register: frontend_check
+      retries: 5
+      delay: 10
+      until: frontend_check.status == 200
+      ignore_errors: yes
+      
+    - name: Display deployment status
+      debug:
+        msg: "Frontend deployed successfully to {{ inventory_hostname }}"

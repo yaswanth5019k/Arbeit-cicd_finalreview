@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: frontend-config
 data:
-  NEXT_PUBLIC_BACKEND_URL: "http://skillhive-backend-service:9090/api"
+  NEXT_PUBLIC_BACKEND_URL: "http://arbeit-backend-service:9090/api"
